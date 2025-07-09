@@ -1,7 +1,6 @@
 package com.vorqathil.taskmanager.controllers;
 
 import com.vorqathil.taskmanager.dto.AuthenticationDTO;
-import com.vorqathil.taskmanager.dto.JwtToken;
 import com.vorqathil.taskmanager.models.User;
 import com.vorqathil.taskmanager.services.JwtService;
 import com.vorqathil.taskmanager.services.AuthService;
@@ -46,7 +45,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDTO authDTO) {
-        JwtToken jwtToken = authService.login(authDTO);
-        return ResponseEntity.ok(jwtToken);
+        return ResponseEntity.ok(authService.login(authDTO));
     }
 }

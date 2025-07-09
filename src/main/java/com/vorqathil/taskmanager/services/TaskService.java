@@ -10,7 +10,6 @@ import com.vorqathil.taskmanager.util.Status;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +42,6 @@ public class TaskService {
         Task existingTask = taskRepository.findByIdAndUser(id, user).orElseThrow(TaskNotFoundException::new);
         task.setId(id);
         task.setUser(user);
-        task.setUpdatedAt(LocalDateTime.now());
         task.setCreatedAt(existingTask.getCreatedAt());
         if (task.getStatus() == null){
             task.setStatus(existingTask.getStatus());
@@ -61,8 +59,6 @@ public class TaskService {
     }
 
     private void enrichTask(Task task, User user) {
-        task.setCreatedAt(LocalDateTime.now());
-        task.setUpdatedAt(LocalDateTime.now());
         task.setStatus(Status.OPEN);
         task.setUser(user);
     }

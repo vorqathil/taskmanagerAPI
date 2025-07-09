@@ -1,6 +1,5 @@
 package com.vorqathil.taskmanager.services;
 
-import com.vorqathil.taskmanager.dto.JwtToken;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
@@ -27,10 +26,9 @@ public class JwtService {
     @Value("${jwt.app.lifetime}")
     private int lifetime;
 
-    public JwtToken generateTokenPair(@NotEmpty @Size(min = 2, max = 32, message = "Username should be between 2 and 32 characters") String username) {
-        String accessToken = generateAccessToken(username);
+    public String generateTokenPair(@NotEmpty @Size(min = 2, max = 32, message = "Username should be between 2 and 32 characters") String username) {
 
-        return new JwtToken(accessToken);
+        return generateAccessToken(username);
     }
 
     public String generateAccessToken(String username) {

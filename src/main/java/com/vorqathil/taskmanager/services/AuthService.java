@@ -1,7 +1,6 @@
 package com.vorqathil.taskmanager.services;
 
 import com.vorqathil.taskmanager.dto.AuthenticationDTO;
-import com.vorqathil.taskmanager.dto.JwtToken;
 import com.vorqathil.taskmanager.models.User;
 import com.vorqathil.taskmanager.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -37,7 +36,7 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    public JwtToken login(AuthenticationDTO authDTO) {
+    public String login(AuthenticationDTO authDTO) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authDTO.getUsername(), authDTO.getPassword())
         );
